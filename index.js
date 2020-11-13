@@ -1,43 +1,60 @@
 const  Discord = require("discord.js")
-const  config = require("./config.json")
-const   ytdl = require("ytdl-core")
+const  ytdl = require("ytdl-core")
 const client = new Discord.Client()
 const prefix ="--"
-
-
+let userdelete;
 let strariux = 0
 
-client.login(config.BOT_TOKEN)
+client.login(process.env.BOT_TOKEN)
 
 client.on("message",function(message){
-
+    //delete
+    if(message.author.id == userdelete){
+      message.delete()
+      return;
+    }
+    
     if(message.author.bot){return};
-
+    // apoyo
+    
+    
+    if (message.content.toLowerCase().includes("estoy triste")){
+      message.channel.send(`Ánimos ${message.author}`)
+    }else if(message.content.toLowerCase().includes("puta")){
+      message.channel.send("Como tu hermana.")
+    }else if(message.content.toLowerCase().includes("juegan") || message.content.toLowerCase().includes("jugas") || message.content.toLowerCase().includes("jugamos")){
+      message.channel.send("con tu hermana juego.")
+    }  
+    
     //reacionando con emojis a ciertos id.
 
-    numero_ramdom = Math.random() * 100
+    let numero_ramdom = Math.random()
 
-    if(message.member.user.discriminator == 4190 && numero_ramdom > 50){
+    if(message.member.user.discriminator == 4190 && numero_ramdom > 0.5){
         message.react("🧙‍♂️");
 
-    }else if(message.member.user.discriminator == 1891 || message.member.user.discriminator == 6888 && numero_ramdom > 50){
+    }else if((message.member.user.discriminator == 1891 || message.member.user.discriminator == 6888) && Math.random() > 0.5){
     
         message.react("🅿️");
         message.react("🇺");
-        message.react("🇹")
-        message.react("🅾")
+        message.react("🇹");
+        message.react("🅾");
     
     }
 
     if(!message.content.startsWith(prefix)){return}
-
+    
 
     let cuerpocomando = message.content.split(prefix.length);
     let argumentos = cuerpocomando.splice(' ');
     let comando = argumentos.shift().toLowerCase();
-
     //Comandos.
-
+    //borrar msgs
+    if (comando.startsWith('--dl')){
+        userdelete = message.mentions.users.first().id
+        message.delete()
+        return;
+    }
     //ping.
     if(comando === '--ping'){
         const timeTaken = Date.now() - message.createdTimestamp;
@@ -52,6 +69,7 @@ client.on("message",function(message){
         else{
         message.reply(`Strariux se comio ${strariux} pijas 😏.`)
         }
+      return;
     }
 
     //Entra al canal y te dice troleado puto.
@@ -61,11 +79,11 @@ client.on("message",function(message){
             
         if(!canal){   
             message.channel.send('Papi , no me puedo unir si no estas en un canal 🙄.')
-            console.log(canal)
+          return;
         }else if(message.guild.voiceConnection){
         
             message.channel.send(`ya estoy en ${canal}, no rompas las bolas 😡.`)
-         
+           return;
         } else{
             
                 canal.join().then(connection => {
@@ -76,10 +94,10 @@ client.on("message",function(message){
                    
                     dispatcher.on("end", end => {
                         console.log("left channel");
-                        voiceChannel.leave();})
+                        dispatcher.leave();})
                     
                 }).catch(console.error);
-                
+                return;
                 
          }
          }
@@ -99,6 +117,7 @@ client.on("message",function(message){
             )
             .setFooter('tomi es re puto 😣😣😣.');
             message.channel.send(msg_embed)
+           return;
          }
         
          //Comando para saber todo los demas comandos xD.
@@ -111,19 +130,21 @@ client.on("message",function(message){
              .addFields(
                 {name:'--ping', value:'te devuelve tu ping.'},
                 {name:'--tl',value:'Entra al servidor de voz y te dice troleado puto.'},
-                {name:'--oscar',value:'Informacion de Oscar.'}
+                {name:'--oscar',value:'Informacion de Oscar.'},
+                {name:'--dl',value:'Hace que le borren los msj a alguien uwu.'}
              )
              .setFooter('Terminaron los comandos padree 🤗🤗.')
 
              message.channel.send(help_embed)
              message.channel.send('de nada padree 🥰🥰🥰.')
+             return;
          }
-    
-         if(comando === '--mide'){
+         
+        if(comando === '--mide'){
           
-            let tamaño = Math.floor(Math.random()*20)
-            message.reply(`te mide ${tamaño}cm 😏😶.`)
-            
-            }
-  })
-
+          let tamaño = Math.floor(Math.random()*30)
+          message.reply(`te mide ${tamaño}cm 😏😶.`)
+          return;
+          }
+  
+})
