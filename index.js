@@ -118,6 +118,14 @@ client.on("message",function(message){
              message.channel.send(help_embed)
              message.channel.send('de nada padree 🥰🥰🥰.')
          }
+    
+         if(comando === '--mide'){
+          
+            let tamaño = Math.floor(Math.random()*20)
+            message.reply(`te mide ${tamaño}cm 😏😶.`)
+            
+            }
+  })
          
 
 })
