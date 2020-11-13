@@ -1,9 +1,9 @@
 const  Discord = require("discord.js")
 const  config = require("./config.json")
 const   ytdl = require("ytdl-core")
-
 const client = new Discord.Client()
 const prefix ="--"
+
 
 let strariux = 0
 
@@ -12,6 +12,8 @@ client.login(config.BOT_TOKEN)
 client.on("message",function(message){
 
     if(message.author.bot){return};
+
+    //reacionando con emojis a ciertos id.
 
     numero_ramdom = Math.random() * 100
 
@@ -35,6 +37,8 @@ client.on("message",function(message){
     let comando = argumentos.shift().toLowerCase();
 
     //Comandos.
+
+    //ping.
     if(comando === '--ping'){
         const timeTaken = Date.now() - message.createdTimestamp;
         message.reply(`Pong!,${timeTaken}ms.`)
@@ -49,6 +53,8 @@ client.on("message",function(message){
         message.reply(`Strariux se comio ${strariux} pijas 😏.`)
         }
     }
+
+    //Entra al canal y te dice troleado puto.
 
     if(comando ==='--tl'){
          let canal = message.member.voice.channel;
@@ -78,6 +84,8 @@ client.on("message",function(message){
          }
          }
 
+         //Info de oscar.
+
          if(comando === "--oscar"){
             
             const msg_embed = new Discord.MessageEmbed()
@@ -92,6 +100,25 @@ client.on("message",function(message){
             .setFooter('tomi es re puto 😣😣😣.');
             message.channel.send(msg_embed)
          }
+        
+         //Comando para saber todo los demas comandos xD.
+
+         if( comando ==='--help'){
+             const help_embed = new Discord.MessageEmbed()
+             .setColor('ffffff')
+             .setTitle('Comandos')
+             .setDescription('Todos los comandos del bochi 😃.')
+             .addFields(
+                {name:'--ping', value:'te devuelve tu ping.'},
+                {name:'--tl',value:'Entra al servidor de voz y te dice troleado puto.'},
+                {name:'--oscar',value:'Informacion de Oscar.'}
+             )
+             .setFooter('Terminaron los comandos padree 🤗🤗.')
+
+             message.channel.send(help_embed)
+             message.channel.send('de nada padree 🥰🥰🥰.')
+         }
+         
 
 })
 
