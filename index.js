@@ -13,7 +13,22 @@ client.on("message",function(message){
 
     if(message.author.bot){return};
 
+    numero_ramdom = Math.random() * 100
+
+    if(message.member.user.discriminator == 4190 && numero_ramdom > 50){
+        message.react("🧙‍♂️");
+
+    }else if(message.member.user.discriminator == 1891 || message.member.user.discriminator == 6888 && numero_ramdom > 50){
+    
+        message.react("🅿️");
+        message.react("🇺");
+        message.react("🇹")
+        message.react("🅾")
+    
+    }
+
     if(!message.content.startsWith(prefix)){return}
+
 
     let cuerpocomando = message.content.split(prefix.length);
     let argumentos = cuerpocomando.splice(' ');
@@ -61,10 +76,22 @@ client.on("message",function(message){
                 
                 
          }
-         
-         
          }
 
+         if(comando === "--oscar"){
+            
+            const msg_embed = new Discord.MessageEmbed()
+            .setColor('ffffff')
+            .setTitle('Oscar')
+            .setDescription('Hola soy oscar ☺☺.')
+            .setThumbnail('https://wamiz.es/uploads/article/images/wysiwyg/2016/12/gatos-con-sombreros-hechos-de-11s.jpg')
+            .addFields(
+                {name:'Shoko me la pelas 😏😏😏',value:'Thiago la putita del mafia 🙂🙂🙂🙂'},
+                { name: '\u200B', value: '\u200B' }
+            )
+            .setFooter('tomi es re puto 😣😣😣.');
+            message.channel.send(msg_embed)
+         }
 
 })
 
