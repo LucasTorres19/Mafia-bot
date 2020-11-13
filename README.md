@@ -9,3 +9,5 @@ commands:
 --tl : ¡trolado puto😝😝😝!
 
 --oscar : take info for oscar.
+
+--dl : se le asigna un @username y le empieza a borrar los msj, para sacartelo tenes que mandarle el --dl a otro user.
