@@ -6,9 +6,22 @@ let userdelete;
 let strariux = 0
 
 client.login(process.env.BOT_TOKEN)
+ 
+//agregando el estado.
+
+client.on('ready', () => {
+  
+client.user.setPresence( {
+
+activity: {name: "tocar a  tu mama en la cama.",
+type: "STREAMING"},
+status:"online"});})
+
 
 client.on("message",function(message){
-    //delete
+    
+  
+      //delete
     if(message.author.id == userdelete){
       message.delete()
       return;
@@ -151,11 +164,15 @@ client.on("message",function(message){
         if(comando === '--mide'){
           
           let tamaño = Math.floor(Math.random()*31)
-          if (!(message.member.user.discriminator == 1891)){
-          message.reply(`te mide ${tamaño}cm 😏😶.`)
+          
+          if(tamaño > 20){
+            message.reply(`tremenda tula de ${tamaño}cm 😏😶.`)
+          }else if(tamaño >= 6){
+            message.reply(`traigan la lupa para ver este mani de ${tamaño}cm 🧐.`)
           }else{
-            message.reply(`Traiganme una lupa para este maní! 🧐`)
+            message.reply(`te mide ${tamaño}cm 😏😶.`)
           }
+          
           return;
           }
   
