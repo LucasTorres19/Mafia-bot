@@ -16,15 +16,17 @@ client.on("message",function(message){
     
     if(message.author.bot){return};
     // apoyo
-    
-    
-    if (message.content.toLowerCase().includes("estoy triste")){
-      message.channel.send(`Ánimos ${message.author}`)
-    }else if(message.content.toLowerCase().includes("puta")){
-      message.channel.send("Como tu hermana.")
-    }else if(message.content.toLowerCase().includes("juegan") || message.content.toLowerCase().includes("jugas") || message.content.toLowerCase().includes("jugamos")){
-      message.channel.send("con tu hermana juego.")
-    }  
+    let text = message.content.toLowerCase()
+    if (text.includes("estoy triste")){
+      message.channel.send(`Ánimos ${message.author} 😘😘😘.`)
+      return;
+    }else if(text.includes("puta")){
+      message.channel.send("Como tu hermana 😈😈😈😈.")
+      return;
+    }else if(text.includes("juegan") || text.includes("jugas") || text.includes("jugamos")){
+      message.channel.send("con tu hermana juego 🐔🐲🦄🦧🦍🐒🐼.")
+      return;
+    } 
     
     //reacionando con emojis a ciertos id.
 
@@ -49,7 +51,13 @@ client.on("message",function(message){
     let argumentos = cuerpocomando.splice(' ');
     let comando = argumentos.shift().toLowerCase();
     //Comandos.
-    //borrar msgs
+  //noborrar msgs
+    if (comando.startsWith('--nodl')){
+        userdelete = null;
+        message.delete();
+        return;
+    }
+  //borrar msgs
     if (comando.startsWith('--dl')){
         userdelete = message.mentions.users.first().id
         message.delete()
@@ -142,8 +150,12 @@ client.on("message",function(message){
          
         if(comando === '--mide'){
           
-          let tamaño = Math.floor(Math.random()*30)
+          let tamaño = Math.floor(Math.random()*31)
+          if (!(message.member.user.discriminator == 1891)){
           message.reply(`te mide ${tamaño}cm 😏😶.`)
+          }else{
+            message.reply(`Traiganme una lupa para este maní! 🧐`)
+          }
           return;
           }
   
